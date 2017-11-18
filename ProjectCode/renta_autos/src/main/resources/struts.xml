@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.ui.theme" value="simple" />
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <default-action-ref name="hello"/>
+
+        <!--
+            Acción que unicamente preparara un pojo para ser enviado junto con la
+            forma de inicio de sesion al usuario
+        -->
+        <action name="hello" method="showHello"
+                class="mx.unam.pcic.controlador.HelloAction">
+            <result name="success">/WEB-INF/vista/hola.jsp</result>
+        </action>
+
+    </package>
+</struts>
