@@ -1,0 +1,218 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema rentaautosdb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema rentaautosdb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `rentaautosdb` DEFAULT CHARACTER SET utf8 ;
+USE `rentaautosdb` ;
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`entidad`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`entidad` (
+  `identidad` INT NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `estado` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`identidad`),
+  UNIQUE INDEX `identidad_UNIQUE` (`identidad` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`asignaperfil`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`asignaperfil` (
+  `idasignaperfil` INT NOT NULL,
+  `idperfil` INT UNSIGNED NOT NULL,
+  `identidad` INT UNSIGNED NOT NULL,
+  `permisoalta` TINYINT NOT NULL,
+  `permisoedita` TINYINT NOT NULL,
+  `permisobaja` TINYINT NOT NULL,
+  `permisoconsulta` TINYINT NOT NULL,
+  `estado` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`idasignaperfil`),
+  UNIQUE INDEX `idasignaperfil_UNIQUE` (`idasignaperfil` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`perfil`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`perfil` (
+  `idperfil` INT NOT NULL,
+  `nombre` VARCHAR(20) NOT NULL,
+  `estado` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`idperfil`),
+  UNIQUE INDEX `idperfil_UNIQUE` (`idperfil` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`usuario` (
+  `idusuario` INT NOT NULL,
+  `idperfil` INT UNSIGNED NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apaterno` VARCHAR(45) NOT NULL,
+  `amaterno` VARCHAR(45) NOT NULL,
+  `nombreusuario` VARCHAR(20) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(25) NOT NULL,
+  `estado` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`idusuario`),
+  UNIQUE INDEX `idusuario_UNIQUE` (`idusuario` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`chofer`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`chofer` (
+  `idchofer` INT NOT NULL,
+  `idusuario` INT UNSIGNED NOT NULL,
+  `fechaalta` DATETIME NOT NULL,
+  `fechabaja` DATETIME NOT NULL,
+  `direccion` VARCHAR(45) NOT NULL,
+  `telefono` VARCHAR(45) NOT NULL,
+  `comprobante` VARCHAR(45) NOT NULL,
+  `estado` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`idchofer`),
+  UNIQUE INDEX `idchofer_UNIQUE` (`idchofer` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`dueño`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`dueño` (
+  `iddueño` INT NOT NULL,
+  `idusuario` INT UNSIGNED NOT NULL,
+  `idflota` INT NOT NULL,
+  `direccion` VARCHAR(100) NOT NULL,
+  `telefono` VARCHAR(20) NOT NULL,
+  `fechaalta` DATETIME NOT NULL,
+  `fechabaja` DATETIME NOT NULL,
+  `estado` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`iddueño`),
+  UNIQUE INDEX `iddueño_UNIQUE` (`iddueño` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`unidad`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`unidad` (
+  `idunidad` INT NOT NULL,
+  `idflota` INT UNSIGNED NOT NULL,
+  `idzona` INT UNSIGNED NOT NULL,
+  `placa` VARCHAR(45) NOT NULL,
+  `modelo` VARCHAR(45) NOT NULL,
+  `año` INT NOT NULL,
+  `color` VARCHAR(25) NOT NULL,
+  `longitud` VARCHAR(25) NULL,
+  `latitud` VARCHAR(25) NULL,
+  `estado` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`idunidad`),
+  UNIQUE INDEX `idunidad_UNIQUE` (`idunidad` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`averia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`averia` (
+  `idaveria` INT NOT NULL,
+  `idservicio` INT UNSIGNED NOT NULL,
+  `fechacreacion` DATETIME NOT NULL,
+  `fechaatencion` DATETIME NOT NULL,
+  `costoreparacion` DECIMAL(2) NOT NULL,
+  `causa` VARCHAR(100) NOT NULL,
+  `descripcion` VARCHAR(300) NOT NULL,
+  `estado` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`idaveria`),
+  UNIQUE INDEX `idaveria_UNIQUE` (`idaveria` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`zona`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`zona` (
+  `idzona` INT NOT NULL,
+  `estado` VARCHAR(45) NOT NULL,
+  `municipio` VARCHAR(45) NOT NULL,
+  `colonia` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idzona`),
+  UNIQUE INDEX `idzona_UNIQUE` (`idzona` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`extravío`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`extravío` (
+  `idextravío` INT NOT NULL,
+  `idservicio` INT UNSIGNED NOT NULL,
+  `fechaextravio` DATETIME NOT NULL,
+  `fecharecuperacion` DATETIME NOT NULL,
+  PRIMARY KEY (`idextravío`),
+  UNIQUE INDEX `idextravío_UNIQUE` (`idextravío` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`servicio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`servicio` (
+  `idservicio` INT NOT NULL,
+  `idchofer` INT UNSIGNED NOT NULL,
+  `idunidad` INT UNSIGNED NOT NULL,
+  `fechainicio` DATETIME NOT NULL,
+  `fechafin` DATETIME NOT NULL,
+  `estado` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`idservicio`),
+  UNIQUE INDEX `idservicio_UNIQUE` (`idservicio` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`pago`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`pago` (
+  `idpago` INT NOT NULL,
+  `idchofer` INT UNSIGNED NOT NULL,
+  `tipopago` VARCHAR(45) NOT NULL,
+  `monto` DECIMAL(10,2) UNSIGNED NOT NULL,
+  `estado` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`idpago`),
+  UNIQUE INDEX `idpago_UNIQUE` (`idpago` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rentaautosdb`.`desempeño`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `rentaautosdb`.`desempeño` (
+  `iddesempeño` INT NOT NULL,
+  `idservicio` INT UNSIGNED NOT NULL,
+  `calificacion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`iddesempeño`),
+  UNIQUE INDEX `iddesempeño_UNIQUE` (`iddesempeño` ASC))
+ENGINE = InnoDB;
+
+CREATE USER 'admin' IDENTIFIED BY 'admin';
+
+GRANT ALL ON `rentaautosdb`.* TO 'admin';
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
