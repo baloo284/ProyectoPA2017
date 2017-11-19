@@ -1,3 +1,12 @@
 mx/unam/pcic/logica/HelloWorld.class
-mx/unam/pcic/controlador/BaseAction.class
+mx/unam/pcic/modelo/Chofer.class
+mx/unam/pcic/modelo/Pago.class
 mx/unam/pcic/controlador/HelloAction.class
+mx/unam/pcic/modelo/Servicio.class
+mx/unam/pcic/modelo/HibernateSessionFactory.class
+mx/unam/pcic/modelo/Unidad.class
+mx/unam/pcic/modelo/Dueño.class
+mx/unam/pcic/controlador/BaseAction.class
+mx/unam/pcic/modelo/IBaseHibernateDAO.class
+mx/unam/pcic/modelo/BaseHibernateDAO.class
+mx/unam/pcic/modelo/Zona.class

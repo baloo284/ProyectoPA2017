@@ -1,3 +1,12 @@
+/home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/modelo/Unidad.java
+/home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/modelo/Dueño.java
+/home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/modelo/HibernateSessionFactory.java
+/home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/modelo/IBaseHibernateDAO.java
+/home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/modelo/Servicio.java
 /home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/controlador/BaseAction.java
 /home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/logica/HelloWorld.java
+/home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/modelo/Pago.java
+/home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/modelo/BaseHibernateDAO.java
+/home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/modelo/Chofer.java
 /home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/controlador/HelloAction.java
+/home/alex/IdeaProjects/renta_autos/src/main/java/mx/unam/pcic/modelo/Zona.java
